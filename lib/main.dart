@@ -36,7 +36,7 @@ class MyHomePage extends StatelessWidget {
             child: Card(
               color: Colors.blue,
               elevation: 5,
-              child: Text("CHART!"),
+              child: Text("CHART!-"),
             ),
           ),
           const Card(
