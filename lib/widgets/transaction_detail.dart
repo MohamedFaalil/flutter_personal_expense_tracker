@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbols.dart';
+import 'package:intl/intl.dart';
 
 class TransactionDetailWidget extends StatelessWidget {
   final String title;
@@ -21,7 +23,7 @@ class TransactionDetailWidget extends StatelessWidget {
           ),
         ),
         Text(
-          date.toString(),
+          DateFormat.yMd().format(date),
           style: const TextStyle(
             fontSize: 14,
             color: Colors.grey,

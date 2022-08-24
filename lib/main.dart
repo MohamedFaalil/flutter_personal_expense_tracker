@@ -27,13 +27,13 @@ class MyHomePage extends StatelessWidget {
       id: 't1',
       title: 'New shoe',
       amount: 45.0,
-      date: DateTime.now(),
+      date: DateTime.parse("2022-08-24"),
     ),
     Transaction(
       id: 't2',
       title: 'Weekly groceries',
       amount: 51.0,
-      date: DateTime.now(),
+      date: DateTime.parse("2022-08-23"),
     ),
   ];
   MyHomePage({Key? key}) : super(key: key);
