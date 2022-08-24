@@ -32,7 +32,7 @@ class MyHomePage extends StatelessWidget {
       id: 't2',
       title: 'Weekly groceries',
       amount: 51.0,
-      date: DateTime.parse("2022-08-24"),
+      date: DateTime.now(),
     ),
   ];
   MyHomePage({Key? key}) : super(key: key);
@@ -84,12 +84,22 @@ class MyHomePage extends StatelessWidget {
                       ),
                     ),
                     Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           tx.title,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Text(
                           tx.date.toString(),
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey,
+                          ),
                         ),
                       ],
                     ),
