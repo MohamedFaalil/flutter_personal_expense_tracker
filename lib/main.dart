@@ -62,8 +62,21 @@ class MyHomePage extends StatelessWidget {
               return Card(
                 child: Row(
                   children: [
-                    Text(
-                      tx.amount.toString(),
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 10.0,
+                        horizontal: 20.0,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 2,
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(5),
+                      child: Text(
+                        tx.amount.toString(),
+                      ),
                     ),
                     Column(
                       children: [
