@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'transaction.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,13 +15,27 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  final List<Transaction> transactions = [
+    Transaction(
+      id: 't1',
+      title: 'New shoe',
+      amount: 45.0,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Weekly groceries',
+      amount: 51.0,
+      date: DateTime.parse("2022-08-24"),
+    ),
+  ];
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +44,9 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Flutter app'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+
         // ignore: prefer_const_literals_to_create_immutables
         children: [
           const SizedBox(
@@ -36,15 +54,17 @@ class MyHomePage extends StatelessWidget {
             child: Card(
               color: Colors.blue,
               elevation: 5,
-              child: Text("CHART!-"),
+              child: Text("CHART!"),
             ),
           ),
-          const Card(
-            elevation: 5,
-            child: SizedBox(
-              width: 100,
-              child: Text("LIST OF Tx."),
-            ),
+          Column(
+            children: transactions.map((Transaction tx) {
+              return Card(
+                child: Text(
+                  tx.title,
+                ),
+              );
+            }).toList(),
           ),
         ],
       ),
