@@ -45,7 +45,7 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Flutter app'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
 
         // ignore: prefer_const_literals_to_create_immutables
@@ -58,9 +58,33 @@ class MyHomePage extends StatelessWidget {
               child: Text("CHART!"),
             ),
           ),
-          TransactionWidget(
-            transactions,
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const TextField(
+                    decoration: InputDecoration(labelText: "Title"),
+                  ),
+                  const TextField(
+                    decoration: InputDecoration(labelText: "Amount"),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Add Transaction",
+                      style: TextStyle(
+                        color: Colors.purple,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
+          TransactionWidget(transactions),
         ],
       ),
     );
