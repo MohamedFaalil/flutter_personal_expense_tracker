@@ -36,8 +36,8 @@ class MyHomePage extends StatelessWidget {
       date: DateTime.parse("2022-08-23"),
     ),
   ];
-  late String inputTitle;
-  late double inputAmount;
+  var titleController = TextEditingController();
+  var amountController = TextEditingController();
 
   MyHomePage({Key? key}) : super(key: key);
 
@@ -70,22 +70,18 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   TextField(
                     decoration: const InputDecoration(labelText: "Title"),
-                    onChanged: (val) {
-                      inputTitle = val;
-                    },
+                    controller: titleController,
                   ),
                   TextField(
                     decoration: const InputDecoration(labelText: "Amount"),
-                    onChanged: (val) {
-                      inputAmount = double.parse(val);
-                    },
+                    controller: amountController,
                   ),
                   TextButton(
                     onPressed: () {
                       print(
                           "===================ENTERED VALUES===================");
-                      print(inputAmount);
-                      print(inputTitle);
+                      print(titleController.text);
+                      print(amountController.text);
                     },
                     child: const Text(
                       "Add Transaction",
