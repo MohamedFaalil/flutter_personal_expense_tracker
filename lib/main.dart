@@ -36,6 +36,9 @@ class MyHomePage extends StatelessWidget {
       date: DateTime.parse("2022-08-23"),
     ),
   ];
+  late String inputTitle;
+  late double inputAmount;
+
   MyHomePage({Key? key}) : super(key: key);
 
   @override
@@ -65,14 +68,25 @@ class MyHomePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const TextField(
-                    decoration: InputDecoration(labelText: "Title"),
+                  TextField(
+                    decoration: const InputDecoration(labelText: "Title"),
+                    onChanged: (val) {
+                      inputTitle = val;
+                    },
                   ),
-                  const TextField(
-                    decoration: InputDecoration(labelText: "Amount"),
+                  TextField(
+                    decoration: const InputDecoration(labelText: "Amount"),
+                    onChanged: (val) {
+                      inputAmount = double.parse(val);
+                    },
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      print(
+                          "===================ENTERED VALUES===================");
+                      print(inputAmount);
+                      print(inputTitle);
+                    },
                     child: const Text(
                       "Add Transaction",
                       style: TextStyle(
