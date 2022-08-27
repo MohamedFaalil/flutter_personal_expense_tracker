@@ -1,5 +1,5 @@
+import 'package:expense_tracker_app/widgets/transaction_form.dart';
 import 'package:flutter/material.dart';
-import 'transaction.dart';
 import './widgets/transaction.dart';
 
 void main() {
@@ -16,30 +16,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(
-      id: 't1',
-      title: 'New shoe',
-      amount: 45.0,
-      date: DateTime.parse("2022-08-24"),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Weekly groceries',
-      amount: 51.0,
-      date: DateTime.parse("2022-08-23"),
-    ),
-  ];
-  var titleController = TextEditingController();
-  var amountController = TextEditingController();
-
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,40 +44,7 @@ class MyHomePage extends StatelessWidget {
               child: Text("CHART!"),
             ),
           ),
-          Card(
-            elevation: 5,
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  TextField(
-                    decoration: const InputDecoration(labelText: "Title"),
-                    controller: titleController,
-                  ),
-                  TextField(
-                    decoration: const InputDecoration(labelText: "Amount"),
-                    controller: amountController,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      print(
-                          "===================ENTERED VALUES===================");
-                      print(titleController.text);
-                      print(amountController.text);
-                    },
-                    child: const Text(
-                      "Add Transaction",
-                      style: TextStyle(
-                        color: Colors.purple,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          TransactionWidget(transactions),
+          const TransactionWidget(),
         ],
       ),
     );
