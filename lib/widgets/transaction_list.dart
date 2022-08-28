@@ -6,25 +6,28 @@ import './transaction_detail.dart';
 class TransactionListWidget extends StatelessWidget {
   final List<Transaction> transaction;
 
-  const TransactionListWidget(this.transaction, {Key? key})
-      : super(key: key);
+  const TransactionListWidget(this.transaction, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: transaction.map((Transaction tx) {
-        return Card(
-          child: Row(
-            children: [
-              TransactionAmountWidget(tx.amount),
-              TransactionDetailWidget(
-                title: tx.title,
-                date: tx.date,
-              )
-            ],
-          ),
-        );
-      }).toList(),
+    return SizedBox(
+      height: 500,
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          return Card(
+            child: Row(
+              children: [
+                TransactionAmountWidget(transaction[index].amount),
+                TransactionDetailWidget(
+                  title: transaction[index].title,
+                  date: transaction[index].date,
+                )
+              ],
+            ),
+          );
+        },
+        itemCount: transaction.length,
+      ),
     );
   }
 }
