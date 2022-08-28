@@ -13,9 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Personal Expense Tracker',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.amber),
       ),
       home: const MyHomePage(),
     );
@@ -69,7 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter app'),
+        backgroundColor: Theme.of(context).primaryColor,
+        title: const Text('Personal Expense'),
         actions: [
           IconButton(
               onPressed: () {
@@ -87,12 +89,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
           // ignore: prefer_const_literals_to_create_immutables
           children: [
-            const SizedBox(
+            SizedBox(
               width: double.infinity,
               child: Card(
-                color: Colors.blue,
+                color: Theme.of(context).primaryColor,
                 elevation: 5,
-                child: Text("CHART!"),
+                child: const Text("CHART!"),
               ),
             ),
             TransactionListWidget(_userTransactions),
