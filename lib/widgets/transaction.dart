@@ -43,7 +43,16 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     return Column(
       children: [
         TransactionFormWidget(_updateTransactionList),
-        TransactionListWidget(_userTransactions),
+        SizedBox(
+          height: 500,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                TransactionListWidget(_userTransactions),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
