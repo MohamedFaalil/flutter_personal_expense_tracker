@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-class TransactionFormWidget extends StatelessWidget {
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
+class TransactionFormWidget extends StatefulWidget {
   final Function updateTransactionList;
-  TransactionFormWidget(this.updateTransactionList, {Key? key})
+  const TransactionFormWidget(this.updateTransactionList, {Key? key})
       : super(key: key);
+
+  @override
+  State<TransactionFormWidget> createState() => _TransactionFormWidgetState();
+}
+
+class _TransactionFormWidgetState extends State<TransactionFormWidget> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
 
   void submitForm() {
     final enteredTitle = titleController.text;
@@ -14,7 +21,8 @@ class TransactionFormWidget extends StatelessWidget {
     final enteredAmount = double.parse(amountController.text);
     if (enteredAmount <= 0) return;
 
-    updateTransactionList(enteredTitle, enteredAmount);
+    widget.updateTransactionList(enteredTitle, enteredAmount);
+    Navigator.of(context).pop();
   }
 
   @override
@@ -35,10 +43,14 @@ class TransactionFormWidget extends StatelessWidget {
               controller: amountController,
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
-              onSubmitted: (_) => submitForm(),
+              onSubmitted: (_) {
+                submitForm();
+              },
             ),
             TextButton(
-              onPressed: () => submitForm(),
+              onPressed: () {
+                submitForm();
+              },
               child: const Text(
                 "Add Transaction",
                 style: TextStyle(

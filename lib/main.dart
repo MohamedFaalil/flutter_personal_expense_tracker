@@ -1,6 +1,7 @@
-import 'package:expense_tracker_app/widgets/transaction_form.dart';
 import 'package:flutter/material.dart';
-import './widgets/transaction.dart';
+import './models/transaction.dart';
+import './widgets/transaction_form.dart';
+import './widgets/transaction_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,8 +22,48 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Transaction> _userTransactions = [
+    Transaction(
+      id: 't1',
+      title: 'New shoe',
+      amount: 45.0,
+      date: DateTime.parse("2022-08-24"),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Weekly groceries',
+      amount: 51.0,
+      date: DateTime.parse("2022-08-23"),
+    ),
+  ];
+
+  void _updateTransactionList(String title, double amount) {
+    final newTransaction = Transaction(
+      id: DateTime.now().toString(),
+      title: title,
+      amount: amount,
+      date: DateTime.now(),
+    );
+    setState(() {
+      _userTransactions.add(newTransaction);
+    });
+  }
+
+  void _showNewTransactionFormModal(BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (_) {
+          return TransactionFormWidget(_updateTransactionList);
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +72,9 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Flutter app'),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                _showNewTransactionFormModal(context);
+              },
               icon: const Icon(
                 Icons.add,
               ))
@@ -52,13 +95,15 @@ class MyHomePage extends StatelessWidget {
                 child: Text("CHART!"),
               ),
             ),
-            const TransactionWidget(),
+            TransactionListWidget(_userTransactions),
           ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          _showNewTransactionFormModal(context);
+        },
         child: const Icon(
           Icons.add,
         ),
