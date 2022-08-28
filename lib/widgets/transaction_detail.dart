@@ -16,10 +16,7 @@ class TransactionDetailWidget extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         Text(
           DateFormat.yMd().format(date),
